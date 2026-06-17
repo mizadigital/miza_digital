@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miza Digital — Premium Digital Products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0D1B2A;
+      --navy2:  #152234;
+      --navy3:  #1E3048;
+      --white:  #F7F5F0;
+      --violet: #7C3AED;
+      --violet-light: #9D62F5;
+      --gold:   #F0B429;
+      --slate:  #8494A7;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 5%;
+      background: rgba(13,27,42,0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(124,58,237,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--violet-light); }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      color: var(--slate); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--violet); color: var(--white) !important;
+      padding: 0.55rem 1.25rem; border-radius: 8px;
+      font-weight: 600 !important; font-size: 0.88rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--violet-light) !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 5% 5rem;
+      position: relative; overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.35);
+      color: var(--violet-light); font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--violet-light);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 820px;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--violet-light), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem; color: var(--slate); max-width: 520px;
+      line-height: 1.65; margin-bottom: 2.5rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn-primary {
+      background: var(--violet); color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 0 rgba(124,58,237,0);
+    }
+    .btn-primary:hover {
+      background: var(--violet-light); transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.4);
+    }
+
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 10px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--violet-light); background: rgba(124,58,237,0.1); }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 2rem;
+      color: var(--white);
+    }
+    .stat-label { font-size: 0.82rem; color: var(--slate); margin-top: 0.2rem; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 5rem 5%; }
+
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--violet-light);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+    .section-sub { color: var(--slate); font-size: 1rem; line-height: 1.6; max-width: 480px; }
+
+    .section-head { margin-bottom: 3rem; }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--navy2); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      cursor: pointer; position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(124,58,237,0.25);
+      border-color: rgba(124,58,237,0.45);
+    }
+
+    /* shimmer on hover */
+    .product-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(115deg, transparent 40%, rgba(124,58,237,0.08) 50%, transparent 60%);
+      background-size: 200% 200%;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .product-card:hover::after {
+      opacity: 1;
+      animation: shimmer 1.2s ease forwards;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .product-thumb {
+      width: 100%; height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; position: relative;
+    }
+
+    .product-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--gold); color: var(--navy);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 0.25rem 0.65rem; border-radius: 100px;
+    }
+
+    .product-body { padding: 1.25rem 1.4rem 1.4rem; }
+    .product-category {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--violet-light); margin-bottom: 0.45rem;
+    }
+    .product-name {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.08rem;
+      line-height: 1.25; margin-bottom: 0.5rem;
+    }
+    .product-desc { font-size: 0.86rem; color: var(--slate); line-height: 1.55; margin-bottom: 1.1rem; }
+
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.25rem;
+    }
+    .product-price .orig {
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 400;
+      color: var(--slate); text-decoration: line-through; margin-left: 0.4rem;
+    }
+
+    .btn-buy {
+      background: var(--violet); color: var(--white);
+      border: none; padding: 0.55rem 1.15rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.88rem; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-buy:hover { background: var(--violet-light); transform: scale(1.04); }
+
+    /* thumb bg colors */
+    .thumb-indigo { background: linear-gradient(135deg, #1e1b4b, #2d2062); }
+    .thumb-emerald { background: linear-gradient(135deg, #064e3b, #065f46); }
+    .thumb-rose    { background: linear-gradient(135deg, #4c0519, #881337); }
+    .thumb-amber   { background: linear-gradient(135deg, #451a03, #78350f); }
+    .thumb-sky     { background: linear-gradient(135deg, #0c1445, #1e3a8a); }
+    .thumb-slate   { background: linear-gradient(135deg, #1e293b, #334155); }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: var(--navy); }
+
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .step {
+      padding: 2rem 1.5rem;
+      background: var(--navy2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+    }
+    .step-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(124,58,237,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.1rem;
+    }
+    .step h3 {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.88rem; color: var(--slate); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    #reviews { background: var(--navy2); }
+
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: var(--navy3); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius); padding: 1.6rem;
+    }
+    .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.8rem; }
+    .review-text { font-size: 0.92rem; color: #b0bec8; line-height: 1.65; margin-bottom: 1.1rem; }
+    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+    .reviewer-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--violet); font-weight: 700; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 600; font-size: 0.88rem; }
+    .reviewer-role { font-size: 0.78rem; color: var(--slate); }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: rgba(124,58,237,0.08);
+      border-top: 1px solid rgba(124,58,237,0.2);
+      border-bottom: 1px solid rgba(124,58,237,0.2);
+      padding: 2rem 5%;
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      align-items: center; justify-content: center;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.88rem; font-weight: 500; color: var(--slate);
+    }
+    .trust-item span:first-child { font-size: 1.3rem; }
+
+    /* ── CTA ── */
+    #cta {
+      background: var(--navy);
+      text-align: center; padding: 6rem 5%;
+      position: relative; overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute; bottom: -30%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #cta h2 {
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.02em; margin-bottom: 1rem;
+    }
+    #cta p { color: var(--slate); font-size: 1.05rem; margin-bottom: 2.5rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem 5%;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: var(--white); text-decoration: none;
+    }
+    .footer-logo span { color: var(--violet-light); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      text-decoration: none; font-size: 0.85rem; color: var(--slate);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    footer p { font-size: 0.8rem; color: var(--slate); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 1rem 4%; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-stats { gap: 2rem; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Miza<span>.</span>Digital</a>
+  <div class="nav-links">
+    <a href="#products">Products</a>
+    <a href="#how">How it works</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#products" class="nav-cta">Shop Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow"><span class="dot"></span> New drops every week</div>
+  <h1>Premium digital products that <em>move your work forward</em></h1>
+  <p class="hero-sub">Templates, toolkits, and resources built for creators, designers, and builders who don't settle for average.</p>
+  <div class="hero-actions">
+    <a href="#products" class="btn-primary">Browse Products</a>
+    <a href="#how" class="btn-ghost">How it works</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">1,200+</div><div class="stat-label">Happy customers</div></div>
+    <div class="stat"><div class="stat-num">48</div><div class="stat-label">Products available</div></div>
+    <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Average rating</div></div>
+  </div>
+</header>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-head">
+    <p class="section-label">Our store</p>
+    <h2 class="section-title">Featured products</h2>
+    <p class="section-sub">Instant downloads. No subscriptions. Yours forever.</p>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-thumb thumb-indigo">🎨
+        <div class="product-badge">Bestseller</div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Design System</p>
+        <h3 class="product-name">Miza UI Kit — Figma</h3>
+        <p class="product-desc">500+ components, 30 templates, dark & light modes. Ship faster, look better.</p>
+        <div class="product-footer">
+          <div class="product-price">$49 <span class="orig">$89</span></div>
+          <button class="btn-buy">Buy now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb thumb-emerald">📊</div>
+      <div class="product-body">
+        <p class="product-category">Business</p>
+        <h3 class="product-name">Financial Planner Pro</h3>
+        <p class="product-desc">Notion + Excel bundle. Budget, forecast, and track business finances like a CFO.</p>
+        <div class="product-footer">
+          <div class="product-price">$29</div>
+          <button class="btn-buy">Buy now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb thumb-rose">✍️
+        <div class="product-badge">New</div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Content</p>
+        <h3 class="product-name">Content Creator OS</h3>
+        <p class="product-desc">1-year content calendar, viral hooks vault, and analytics tracker in one Notion workspace.</p>
+        <div class="product-footer">
+          <div class="product-price">$39 <span class="orig">$59</span></div>
+          <button class="btn-buy">Buy now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb thumb-amber">⚡</div>
+      <div class="product-body">
+        <p class="product-category">Productivity</p>
+        <h3 class="product-name">Second Brain Starter</h3>
+        <p class="product-desc">PARA method Notion template. Organize every project, note, and resource with zero friction.</p>
+        <div class="product-footer">
+          <div class="product-price">$19</div>
+          <button class="btn-buy">Buy now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb thumb-sky">🚀
+        <div class="product-badge">Hot</div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Marketing</p>
+        <h3 class="product-name">Landing Page Bundle</h3>
+        <p class="product-desc">12 high-converting HTML landing pages. Edit, deploy, and start capturing leads today.</p>
+        <div class="product-footer">
+          <div class="product-price">$59 <span class="orig">$99</span></div>
+          <button class="btn-buy">Buy now</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-thumb thumb-slate">🎓</div>
+      <div class="product-body">
+        <p class="product-category">Course</p>
+        <h3 class="product-name">Freelance Fast-Track</h3>
+        <p class="product-desc">PDFs, swipe files, and contract templates to land your first $3k freelance month.</p>
+        <div class="product-footer">
+          <div class="product-price">$79</div>
+          <button class="btn-buy">Buy now</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust-strip">
+  <div class="trust-item"><span>🔒</span> Secure checkout</div>
+  <div class="trust-item"><span>⚡</span> Instant delivery</div>
+  <div class="trust-item"><span>♾️</span> Lifetime access</div>
+  <div class="trust-item"><span>🔄</span> Free updates</div>
+  <div class="trust-item"><span>💬</span> Real support</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-head">
+    <p class="section-label">Simple process</p>
+    <h2 class="section-title">Three steps to your product</h2>
+    <p class="section-sub">From checkout to creative work in under a minute.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon">🛒</div>
+      <h3>Pick your product</h3>
+      <p>Browse the store, find what fits your workflow, and add it to cart. No account required.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">💳</div>
+      <h3>Secure checkout</h3>
+      <p>Pay with card or PayPal. Your transaction is encrypted and processed instantly.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">📥</div>
+      <h3>Download & create</h3>
+      <p>Your download link arrives immediately by email. Access it anytime — no expiry.</p>
+    </div>
+    <div class="step">
+      <div class="step-icon">🔁</div>
+      <h3>Free updates forever</h3>
+      <p>Every product update ships free to you. Buy once, benefit forever.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-head">
+    <p class="section-label">Customer love</p>
+    <h2 class="section-title">What buyers say</h2>
+    <p class="section-sub">Real feedback from the community.</p>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"The UI Kit alone saved me 40 hours on my last client project. The quality is unreal for the price."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AK</div>
+        <div>
+          <div class="reviewer-name">Aiko Kamura</div>
+          <div class="reviewer-role">Product Designer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Content Creator OS completely changed how I plan content. Went from burnout to 3 months ahead in a week."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JM</div>
+        <div>
+          <div class="reviewer-name">James Mbeki</div>
+          <div class="reviewer-role">YouTube Creator</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Bought the landing page bundle and had a live page for a client the same afternoon. Crazy value."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SP</div>
+        <div>
+          <div class="reviewer-name">Sofia Pérez</div>
+          <div class="reviewer-role">Freelance Developer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2>Ready to level up your workflow?</h2>
+  <p>Join 1,200+ creators who've already made the switch to smarter tools.</p>
+  <a href="#products" class="btn-primary" style="font-size:1.05rem; padding: 1rem 2.4rem;">Browse all products →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#">Miza<span>.</span>Digital</a>
+  <div class="footer-links">
+    <a href="#">Products</a>
+    <a href="#">Refund policy</a>
+    <a href="#">Contact</a>
+    <a href="#">Affiliate</a>
+  </div>
+  <p>© 2026 Miza Digital. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
